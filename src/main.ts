@@ -16,7 +16,7 @@ if (window.visitCounterLibrary == null) {
 
 const rootElementId: string = "fls-visit-counter"
 const eventName: string = "pageVisited"
-const entityToTrack: string[] = ["event-page", "/"]
+const entityToTrack: string = "event-page"
 const storageName: string = "visitStorage"
 
 const block = document.createElement('div')

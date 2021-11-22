@@ -1,13 +1,11 @@
 import { calculateHashCode, createVisit } from './applicationLogic'
-import { VisitEntity } from '@/models/visitEntity';
-import { VisitStorage } from '@/models/visistStorage';
+import { VisitEntity } from '../models/visitEntity';
+import { VisitStorage } from '../models/visistStorage';
 import { GetVisitEntityById, updateVisitEntity } from './remoteStorageApi';
 
 export default (storageName: string): ((args) => void) => {
     return async (...args) => {
-
-
-            
+         
                 const path = window.location.pathname;
                 const query = window.location.search;
 

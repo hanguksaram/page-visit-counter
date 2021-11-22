@@ -1,5 +1,5 @@
-import { VisitStorage } from "@/models/visistStorage";
-import { KeyValue, VisitEntity } from "@/models/visitEntity";
+import { VisitStorage } from "../models/visistStorage";
+import { KeyValue, VisitEntity } from "../models/visitEntity";
 
 export const calculateHashCode = (str: string): string => {
     var hash = 0;

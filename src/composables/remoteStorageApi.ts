@@ -1,6 +1,6 @@
-import { VisitStorage } from "@/models/visistStorage";
-import { VisitEntity } from "@/models/visitEntity";
-import { db } from "@/store/firebase"
+import { VisitStorage } from "../models/visistStorage";
+import { VisitEntity } from "../models/visitEntity";
+import { db } from "../store/firebase"
 import { getFirestore, collection, getDocs, Timestamp, doc, setDoc, getDoc, enableIndexedDbPersistence } from 'firebase/firestore';
 
 

@@ -1,5 +1,5 @@
-import { VisitEntity } from "@/models/visitEntity";
-import { db } from "@/store/firebase"
+import { VisitEntity } from "../models/visitEntity";
+import { db } from "../store/firebase"
 import { Unsubscribe } from "@firebase/util";
 import { collection, query, where, onSnapshot, Timestamp } from "firebase/firestore";
 
