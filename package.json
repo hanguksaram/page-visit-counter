@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build-test": "vue-cli-service build --mode test",
-    "build-prod": "vue-cli-service build --mode production"
+    "build-prod": "vue-cli-service build --mode production",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.6.5",
