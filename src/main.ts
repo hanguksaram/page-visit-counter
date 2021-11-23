@@ -4,14 +4,20 @@ import App from './App.vue'
 declare global {
     interface Window {
         visitCounterLibrary: {
-            initTime: number;
-            storageRefreshTime: number
+            initTime?: number;
+            storageRefreshTime?: number;
+            initialize?: (
+                pageVisitedEventName: string,
+                storageLoadedEventName: string,
+                entitiesToTrack: string[] | string,
+                storageName: string,
+            ) => () => void;
         }
 
     }
 }
 if (window.visitCounterLibrary == null) {
-    window.visitCounterLibrary = { initTime: null, storageRefreshTime: null}
+    window.visitCounterLibrary = { }
 }
 
 const rootElementId: string = "fls-visit-counter"
