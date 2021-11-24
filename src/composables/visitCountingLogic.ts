@@ -5,39 +5,35 @@ import { GetVisitEntityById, updateVisitEntity } from './remoteStorageApi';
 
 export default (storageName: string): ((args) => void) => {
     return async (...args) => {
-         
-                const path = window.location.pathname;
-                const query = window.location.search;
 
-                const pathHash = calculateHashCode(path);
-                const queryHash = calculateHashCode(query);
+        const path = window.location.pathname;
+        const query = window.location.search;
 
-                const entityToTrack: string[] = args.filter((el) => path.includes(el));
+        const pathHash = calculateHashCode(path);
+        const queryHash = calculateHashCode(query);
 
-                if (entityToTrack != null && entityToTrack.length > 0) {
-                    const computedHash: string = pathHash + queryHash;
-                    const storage: VisitStorage = JSON.parse(
-                        sessionStorage.getItem(storageName)
-                    );
-                    let elem: VisitEntity = await GetVisitEntityById(storageName, computedHash)
-                    if (elem) {
-                        storage.entities = storage.entities.filter(el => el.computedHash != elem.computedHash)
-                        elem.visitCount += 1;
-                    } else {
-                        elem = createVisit(
-                            query,
-                            elem,
-                            path,
-                            computedHash,
-                            entityToTrack
-                        );
+        const entityToTrack: string[] = args.filter((el) => path.includes(el));
 
-                      
-                    }
-                    storage.entities.push(elem);
-                    sessionStorage.setItem(storageName, JSON.stringify(storage));
-                    await updateVisitEntity(elem, storageName)
+        if (entityToTrack != null && entityToTrack.length > 0) {
+            const computedHash: string = pathHash + queryHash;
 
-                }
-        };
-    }
+            let elem: VisitEntity = await GetVisitEntityById(storageName, computedHash)
+
+            if (elem) {
+                elem.visitCount += 1;
+            } else {
+                elem = createVisit(
+                    query,
+                    elem,
+                    path,
+                    computedHash,
+                    entityToTrack
+                );
+
+
+            }
+            await updateVisitEntity(elem, storageName)
+
+        }
+    };
+}

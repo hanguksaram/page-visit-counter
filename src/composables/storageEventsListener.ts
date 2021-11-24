@@ -2,6 +2,7 @@ import { VisitEntity } from "../models/visitEntity";
 import { db } from "../store/firebase"
 import { Unsubscribe } from "@firebase/util";
 import { collection, query, where, onSnapshot, Timestamp } from "firebase/firestore";
+import { mergeVisitEntity } from "./sessionStorageApi";
 
 export const configureStorageListener: (storageName: string, entityChangeEventName: string) => Unsubscribe = (storageName, eventName) => {
 
@@ -11,7 +12,8 @@ export const configureStorageListener: (storageName: string, entityChangeEventNa
         snapshot.docChanges().forEach((change, i) => {
             const data = <VisitEntity>change.doc.data()
             if (data.timestamp > window.visitCounterLibrary.storageRefreshTime) {
-    
+                
+                mergeVisitEntity(data, storageName);
                 window.dispatchEvent(new CustomEvent(eventName, {
                     detail: data
                 }));
