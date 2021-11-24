@@ -27,13 +27,13 @@ export default defineComponent({
           window.visitCounterLibrary.storageRefreshTime =
             Timestamp.now().toMillis();
           window.dispatchEvent(
-            new CustomEvent(pageVisitedEventName, {
+            new CustomEvent(storageLoadedEventName, {
               detail: storageName,
             })
           );
         }
 
-        configureStorageListener(storageName, storageLoadedEventName);
+        configureStorageListener(storageName, pageVisitedEventName);
 
         await initializeCountingLogic(storageName)(entitiesToTrack);
       };
