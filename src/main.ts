@@ -9,9 +9,9 @@ declare global {
             initialize?: (
                 pageVisitedEventName: string,
                 storageLoadedEventName: string,
-                entitiesToTrack: string[] | string,
+                entitiesToTrack: string[],
                 storageName: string,
-            ) => () => void;
+            ) => void;
         }
 
     }

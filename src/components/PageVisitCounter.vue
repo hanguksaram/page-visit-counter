@@ -13,13 +13,12 @@ export default defineComponent({
   async setup() {
     
     window.visitCounterLibrary.initialize =
-      (
+      async (
         pageVisitedEventName: string,
         storageLoadedEventName: string,
         entitiesToTrack: string[],
         storageName: string
-      ) =>
-      async () => {
+      ) => {
         if (window.visitCounterLibrary.initTime == null) {
           const storage = await getRemoteStorage(storageName);
           initializesessionStorage(storageName, storage);
