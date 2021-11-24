@@ -10,7 +10,6 @@ import { Timestamp } from "firebase/firestore";
 
 export default defineComponent({
   name: "PageVisitCounter",
-  props: ["eventName", "entityToTrack", "storageName"],
   async setup() {
     
     window.visitCounterLibrary.initialize =
