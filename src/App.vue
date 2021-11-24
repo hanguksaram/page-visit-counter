@@ -1,5 +1,5 @@
 <template>
-  <PageVisitCounter :eventName="eventName" :entityToTrack="entityToTrack" :storageName="storageName"/>
+  <PageVisitCounter/>
 </template>
 
 <script lang="ts">

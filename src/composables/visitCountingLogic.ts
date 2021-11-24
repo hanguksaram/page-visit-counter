@@ -12,7 +12,7 @@ export default (storageName: string): ((args) => void) => {
                 const pathHash = calculateHashCode(path);
                 const queryHash = calculateHashCode(query);
 
-                const entityToTrack: string[] = Object.assign([], args[0]).filter((el) => path.includes(el));
+                const entityToTrack: string[] = args.filter((el) => path.includes(el));
 
                 if (entityToTrack != null && entityToTrack.length > 0) {
                     const computedHash: string = pathHash + queryHash;
