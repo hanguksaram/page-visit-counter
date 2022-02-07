@@ -11,7 +11,6 @@ import { Timestamp } from "firebase/firestore";
 export default defineComponent({
   name: "PageVisitCounter",
   async setup() {
-    console.log("setupped")
     window.visitCounterLibrary.initialize =
       async (
         pageVisitedEventName: string,
@@ -19,7 +18,6 @@ export default defineComponent({
         entitiesToTrack: string[],
         storageName: string
       ) => {
-        console.log("initialized")
         if (window.visitCounterLibrary.initTime == null) {
           const storage = await getRemoteStorage(storageName);
           initializesessionStorage(storageName, storage);

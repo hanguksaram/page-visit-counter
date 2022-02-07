@@ -20,6 +20,10 @@ export const getRemoteStorage: (storageName: string) => Promise<VisitStorage> = 
     //     });
     // // Subsequent queries will use persistence, if it was enabled successfully
 
+    //temporary solution
+
+    return {entities: []}
+    
     try {
 
         const remoteCollection = collection(db, storageName);
