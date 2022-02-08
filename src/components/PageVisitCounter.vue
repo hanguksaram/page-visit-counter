@@ -2,7 +2,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { initializesessionStorage } from "../composables/applicationLogic";
+import { initializeSessionStorage } from "../composables/applicationLogic";
 import { getRemoteStorage } from "../composables/remoteStorageApi";
 import { configureStorageListener } from "../composables/storageEventsListener";
 import initializeCountingLogic from "../composables/visitCountingLogic";
@@ -18,10 +18,12 @@ export default defineComponent({
         entitiesToTrack: string[],
         storageName: string
       ) => {
-        if (window.visitCounterLibrary.initTime == null) {
+        if (sessionStorage.getItem("pageVisitCounterInitTime") == null) {
           const storage = await getRemoteStorage(storageName);
-          initializesessionStorage(storageName, storage);
-          window.visitCounterLibrary.initTime = Timestamp.now().toMillis();
+          initializeSessionStorage(storageName, storage);
+          const initTime = Timestamp.now().toMillis();
+          sessionStorage.setItem("pageVisitCounterInitTime", initTime.toString());
+          sessionStorage.setItem("pageVisitCounterRefreshTime", initTime.toString());
           window.visitCounterLibrary.storageRefreshTime =
             Timestamp.now().toMillis();
           window.dispatchEvent(

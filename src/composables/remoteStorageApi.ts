@@ -5,24 +5,6 @@ import { getFirestore, collection, getDocs, Timestamp, doc, setDoc, getDoc, enab
 
 
 export const getRemoteStorage: (storageName: string) => Promise<VisitStorage> = async (storageName) => {
- 
-    // enableIndexedDbPersistence(db)
-    //     .catch((err) => {
-    //         if (err.code == 'failed-precondition') {
-    //             // Multiple tabs open, persistence can only be enabled
-    //             // in one tab at a a time.
-    //             // ...
-    //         } else if (err.code == 'unimplemented') {
-    //             // The current browser does not support all of the
-    //             // features required to enable persistence
-    //             // ...
-    //         }
-    //     });
-    // // Subsequent queries will use persistence, if it was enabled successfully
-
-    //temporary solution
-
-    return {entities: []}
     
     try {
 
@@ -44,7 +26,7 @@ export const getRemoteStorage: (storageName: string) => Promise<VisitStorage> = 
 export const updateVisitEntity = async (dto: VisitEntity, storageName: string) => {
     dto.timestamp = Timestamp.now().toMillis()
     await setDoc(doc(db, storageName, dto.computedHash), dto)
-    window.visitCounterLibrary.storageRefreshTime = Timestamp.now().toMillis()
+    sessionStorage.setItem("pageVisitCounterRefreshTime", Timestamp.now().toMillis().toString())
     
 }
 export const GetVisitEntityById: (storageName: string, id: string) => Promise<VisitEntity> = async (storageName, id) => {

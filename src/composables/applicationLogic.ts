@@ -46,7 +46,7 @@ export const calculateHashCode = (str: string): string => {
     };
     return elem;
   };
-export const initializesessionStorage = (storageName: string, storage: VisitStorage) => {
+export const initializeSessionStorage = (storageName: string, storage: VisitStorage) => {
       sessionStorage.setItem(storageName, JSON.stringify(storage));
       
 }
