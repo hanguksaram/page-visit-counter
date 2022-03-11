@@ -6,8 +6,8 @@ import { mergeVisitEntity } from "./sessionStorageApi";
 
 export const configureStorageListener: (storageName: string, entityChangeEventName: string) => Unsubscribe = (storageName, eventName) => {
 
-    //temporary
-    if (false) {const q = query(collection(db, storageName));
+
+    const q = query(collection(db, storageName));
 
     const unsubscribe = onSnapshot(q, (snapshot) => {
         snapshot.docChanges().forEach((change, i) => {
@@ -22,6 +22,5 @@ export const configureStorageListener: (storageName: string, entityChangeEventNa
         });
     })
     return unsubscribe
-
-    }
+    
 }

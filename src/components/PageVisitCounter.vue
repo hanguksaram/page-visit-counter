@@ -19,7 +19,6 @@ export default defineComponent({
         storageName: string
       ) => {
         if (sessionStorage.getItem("pageVisitCounterInitTime") == null) {
-
           const storage = await getRemoteStorage(storageName);
           initializeSessionStorage(storageName, storage);
           const initTime = Timestamp.now().toMillis();
